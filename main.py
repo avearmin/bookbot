@@ -20,8 +20,22 @@ class Book:
                 char_count[char] += 1
         return char_count
 
+    def print_report(self):
+        print(f"--- Begin report of {self.path} ---")
+        print(f"{self.word_count} words found in the book")
+        char_list = self.__get_chars_as_list()
+        for char in char_list:
+            if char != "\n":
+                print(f"The '{char}' character was found {self.char_counts[char]} times")
+
+    def __get_chars_as_list(self):
+        char_list = list(self.char_counts.keys())
+        char_list.sort()
+        return char_list
+
 
 def main():
     frankenstein = Book("books/frankenstein.txt")
+    frankenstein.print_report()
 
 main()
